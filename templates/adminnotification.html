@@ -1,0 +1,33 @@
+{% extends 'adminbase.html' %}
+
+{% block body %}
+<div class="container my-5">
+<h1 align='center'>Post a Notification</h1>
+<div class="container my-5">
+<form class="row g-3" action="adminnotification" method="post">
+{% csrf_token %}
+  <div class="col-12">
+    <label for="inputZip" class="form-label">Category</label>
+    <select class="form-control" name="category">
+      <option value="Complaint">Complaint</option>
+      <option value="Event">Event</option>
+      <option value="Electricity">Electricity</option>
+      <option value="Finance">Finance</option>
+      <option value="Food">Food Service</option>
+      <option value="Holiday">Holiday/Festival</option>
+      <option value="Staff">Staff</option>
+      <option value="Others">Others</option>
+    </select>
+  </div>
+    <div class="col-12">
+    <label for="inputCity" class="form-label">Message</label>
+    <input type="text" class="form-control" name="message">
+    </div>
+  <div class="col-12 mt-4 text-center">
+    <button type="submit" class="btn btn-primary w-50">Post</button>
+  </div>
+</form>
+</div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,33 @@
+{% extends 'adminbase.html' %}
+
+{% block body %}
+<div class="container my-5">
+<h1 align='center'>Offline Payment</h1>
+<div class="container my-5">
+<form class="row g-3">
+  <div class="col-12">
+    <label for="inputName" class="form-label">Student ID</label>
+    <input type="text" class="form-control" id="inputName" placeholder="20210001">
+  </div>
+    <div class="col-12">
+    <label for="inputName" class="form-label">Installment No.</label>
+    <input type="Number" class="form-control" id="inputInstal" placeholder="2">
+  </div>
+  <div class="col-12">
+    <label for="inputZip" class="form-label">Mode of Payment</label>
+    <select class="form-control" id="exampleFormControlSelect2">
+      <option value="A">Card Swap</option>
+      <option value="B">Cash</option>
+    </select>
+  </div>
+    <div class="col-12">
+    <label for="inputCity" class="form-label">Amount</label>
+    <input type="text" class="form-control" id="inputFee" placeholder="50000">
+    </div>
+  <div class="col-12 mt-4 text-center">
+    <button type="submit" class="btn btn-primary w-50">Submit</button>
+  </div>
+</form>
+</div>
+</div>
+{% endblock body %}

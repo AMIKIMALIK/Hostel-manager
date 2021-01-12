@@ -1,0 +1,113 @@
+{% extends 'adminbase.html' %}
+{% block style %}
+<style>
+html, body {
+	margin:0;
+	padding:0;
+	height:100%
+}
+
+#t01{
+    width:100%;
+    border: 1px solid black;
+    table-layout:fixed;
+    height:100%;
+}
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+  text-align:center;
+
+}
+#t01 tr:nth-child(odd) {
+ background-color: #fff;
+ text-align:center;
+ 
+}
+#t01 th {
+  background-color: #000033;
+  color: white;
+  text-align:center;
+  font-size: 15px;
+  height: 70px;
+  
+}
+#t01 tr td{
+    border: 1px solid black;
+
+}
+#t01 tr{
+  height: 30px;
+}
+h2{
+    margin-bottom:20px;
+}
+.day{
+    font-size:25px;
+}
+</style>
+{% endblock style %}
+
+{% block body %}
+
+<div class="container-fluid my-3">
+<h2 align="center">Daily Transport Schedual</h2>
+<h4 align="center">Total: {{message|length}}</h4>
+<table id="t01" class"table table-hover">
+  <tr>
+    <th>Bus No.</th>
+    <th>Time</th>
+    <th>From</th> 
+    <th>Via</th>
+    <th>To</th>
+    <th></th>
+  </tr>
+  {% for i in message %}
+  <tr>
+    <td>{{i.bus}}</td>
+    <td>{{i.time}}</td>
+    <td>{{i.From}}</td>
+    <td>{{i.via}}</td>
+    <td>{{i.to}}</td>
+    <td><a href="/delete/{{i.id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
+    <!-- <td><button type="button" class="btn btn-danger " name={{i.id}}>Delete</button></td> -->
+  </tr>
+  {% endfor%}
+</table>
+</div>
+<div class="container-fluid my-5 py-5">
+<h2 align='center'>Add Transport Schedual Here</h2>
+<div class="container-fluid my-5">
+<form class="row g-3" action="admintransport" method="post">
+{% csrf_token %}
+  <div class="col-2 text-center">
+    <label for="inputCity" class="form-label">Bus No.</label>
+    <input type="text" class="form-control" name="bus" placeholder="101">
+    </div>
+    <div class="col-2 text-center">
+    <label for="inputCity" class="form-label">Time</label>
+    <input type="text" class="form-control" name="time" placeholder="07:00 AM">
+    </div>
+    <div class="col-2 text-center">
+    <label for="inputCity" class="form-label">From</label>
+    <input type="text" class="form-control" name="from" placeholder="Delhi">
+    </div>
+    <div class="col-2 text-center">
+    <label for="inputCity" class="form-label">Via</label>
+    <input type="text" class="form-control" name="via" placeholder="Panipat, Karnal, Ambala">
+    </div>
+    <div class="col-2 text-center">
+    <label for="inputCity" class="form-label">To</label>
+    <input type="text" class="form-control" name="to2" placeholder="Chandigarh">
+    </div>
+  <div class="col-2 mt-4 text-center">
+    <button type="submit" class="btn btn-primary w-50">Submit</button>
+  </div>
+</form>
+</div>
+</div>
+{% comment %} {% if status %}
+  <script>
+    alert("{{status}}")
+  </script>
+{% endif%} {% endcomment %}
+{% endblock body %}

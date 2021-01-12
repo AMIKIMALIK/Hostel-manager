@@ -1,0 +1,68 @@
+{% extends 'adminbase.html' %}
+{% block style %}
+<style>
+html, body {
+	margin:0;
+	padding:0;
+	height:100%
+}
+
+#t01{
+    width:100%;
+    border: 1px solid black;
+    table-layout:fixed;
+    height:100%;
+}
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+  text-align:center;
+
+}
+#t01 tr:nth-child(odd) {
+ background-color: #fff;
+ text-align:center;
+ 
+}
+#t01 th {
+  background-color: #000033;
+  color: white;
+  text-align:center;
+  font-size: 15px;
+  height: 70px;
+  
+}
+#t01 tr td{
+    border: 1px solid black;
+    word-wrap: break-word;
+
+}
+#t01 tr{
+  height: 30px;
+}
+h2{
+    margin-bottom:20px;
+}
+.day{
+    font-size:25px;
+}
+</style>
+{% endblock style %}
+{% block body %}
+
+<div class="container-fluid my-3">
+<h2 align="center">Student Ledger</h2>
+<table id="t01">
+  <tr>
+    <th>Student ID</th>
+    <th>Total Fee</th>
+    <th>Paid</th>
+    <th>Pending</th>
+  </tr>
+  <tr>
+    <td>{{v1}}</td>
+    <td>{{v2}}</td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+{% endblock body %}

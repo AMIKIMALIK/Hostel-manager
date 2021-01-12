@@ -1,0 +1,229 @@
+{% extends 'adminbase.html' %} {% block body %}
+<div class="container my-5">
+  <h1 align="center">Register New Student Here!</h1>
+  <div class="container my-5">
+    <form class="row g-3" action="registerstudent" method="POST">
+      {% csrf_token %}
+      <div class="col-md-6">
+        <label for="inputName" class="form-label">Student Full Name</label>
+        <input type="text" class="form-control" id="inputName" name="s_name" />
+      </div>
+      <div class="col-md-6">
+        <label for="inputName" class="form-label">Student Mobile Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputMobile"
+          name="s_mobile"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputFather" class="form-label">Father's Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputFather"
+          name="f_name"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputFatherMobile" class="form-label"
+          >Father's Mobile Number</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="inputFatherMobile"
+          name="f_mobile"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputEmail" class="form-label">Student Email</label>
+        <input type="email" class="form-control" id="inputEmail" name="email" />
+      </div>
+      <div class="col-md-6">
+        <label for="inputAcadmic" class="form-label">Gender</label>
+        <select
+          class="form-control"
+          id="exampleFormControlSelect1"
+          name="gender"
+        >
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Others">Other</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="inputCollege" class="form-label">D.O.B</label>
+        <input type="text" class="form-control" id="inputCollege" name="dob" />
+      </div>
+      <div class="col-md-6">
+        <label for="inputCollege" class="form-label">College/University</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCollege"
+          name="college"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputAddress" class="form-label">Course</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCourse"
+          name="course"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputAcadmic" class="form-label">Acadmic Year</label>
+        <select
+          class="form-control"
+          id="exampleFormControlSelect1"
+          name="acadmic"
+        >
+          <option value="1">1st Year</option>
+          <option value="2">2nd Year</option>
+          <option value="3">3rd Year</option>
+          <option value="4">4th Year</option>
+          <option value="5">5th Year</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputAddress"
+          name="address"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputAddress2" class="form-label">Address 2</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputAddress2"
+          name="address2"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity" name="city" />
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputZip" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="inputZip" name="zip" />
+      </div>
+      <div class="col-md-6">
+        <label for="inputCollege" class="form-label">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCountry"
+          name="country"
+        />
+      </div>
+      
+      <div class="col-md-6">
+        <label for="inputZip" class="form-label">Government ID Type</label>
+        <select
+          class="form-control"
+          id="exampleFormControlSelect7"
+          name="gov_type"
+        >
+          <option value="Passport">Passport</option>
+          <option value="Aadhaar Number">Aadhaar Number</option>
+          <option value="Driving Licence">Driving Licence</option>
+          <option value="Voter ID">Voter ID</option>
+          <option value="PAN Number">PAN Number</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="inputCollege" class="form-label"
+          >Government ID Number</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="inputGovernment"
+          name="gov_id"
+        />
+      </div>
+      
+      <div class="col-md-6">
+        <label for="inputZip" class="form-label">Select Block</label>
+        <select
+          class="form-control"
+          id="exampleFormControlSelect4"
+          name="block"
+        >
+          <option value="A">Block A</option>
+          <option value="B">Block B</option>
+          <option value="C">Block C</option>
+          <option value="D">Block D</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="inputZip" class="form-label">Select Room</label>
+        <select class="form-control" id="exampleFormControlSelect3" name="room">
+          <option value="101">101</option>
+          <option value="102">102</option>
+          <option value="103">103</option>
+          <option value="104">104</option>
+          <option value="105">105</option>
+          <option value="106">106</option>
+          <option value="107">107</option>
+          <option value="108">108</option>
+          <option value="109">109</option>
+          <option value="110">110</option>
+          <option value="111">111</option>
+          <option value="112">112</option>
+          <option value="113">113</option>
+          <option value="114">114</option>
+          <option value="115">115</option>
+          <option value="116">116</option>
+          <option value="117">117</option>
+          <option value="118">118</option>
+          <option value="119">119</option>
+          <option value="120">120</option>
+        </select>
+      </div>
+      
+      <div class="col-md-6">
+        <label for="inputZip" class="form-label">Room Type</label>
+        <select
+          class="form-control"
+          id="exampleFormControlSelect2"
+          name="room_type"
+        >
+          <option value="1AC">1 Seater AC</option>
+          <option value="1NAC">1 Seater Non-AC</option>
+          <option value="2AC">2 Seater AC</option>
+          <option value="2NAC">2 Seater Non-AC</option>
+          <option value="3AC">3 Seater AC</option>
+          <option value="3NAC">3 Seater Non-AC</option>
+        </select>
+      </div>
+      
+      <div class="col-md-6">
+        <label for="inputZip" class="form-label">Accomodation Plan</label>
+        <select class="form-control" id="exampleFormControlSelect5" name="plan">
+          <option value="Monthly">Monthly</option>
+          <option value="6 Months">6 Months</option>
+          <option value="10 Months">10 Months</option>
+          <option value="12 Months">12 Months</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label for="inputCity" class="form-label">Discussed Fee</label>
+        <input type="number" class="form-control" id="inputFee" name="fee" />
+      </div>
+      <div class="col-12 mt-4 text-center">
+        <button type="submit" class="btn btn-primary w-50">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock body %}

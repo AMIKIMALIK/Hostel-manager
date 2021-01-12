@@ -1,0 +1,110 @@
+{% extends 'adminbase.html' %}
+{% block style %}
+
+
+<style>
+html, body {
+	margin:0;
+	padding:0;
+	height:100%
+}
+
+#t01{
+    width:100%;
+    border: 1px solid black;
+    table-layout:fixed;
+    height:100%;
+}
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+  text-align:center;
+
+}
+#t01 tr:nth-child(odd) {
+ background-color: #fff;
+ text-align:center;
+ 
+}
+#t01 th {
+  background-color: #000033;
+  color: white;
+  text-align:center;
+  font-size: 15px;
+  height: 70px;
+  
+}
+#t01 tr td{
+    border: 1px solid black;
+
+
+}
+#t01 tr{
+  height: 30px;
+}
+h2{
+    margin-bottom:20px;
+}
+.day{
+    font-size:25px;
+}
+</style>
+{% endblock style %}
+
+{% block body %}
+
+<div class="container-fluid my-3">
+<h2 align="center">Weekly Mess Menu</h2>
+<table id="t01">
+  <tr>
+    <th>Day</th>
+    <th>Break Fast (08:00AM-09:30AM)</th>
+    <th>Lunch (12:00PM-01:30PM)</th> 
+    <th>Snacks (05:00PM-06:00PM)</th>
+    <th>Dinner (08:00PM-09:30PM)</th>
+  </tr>
+  {% for i in message %}
+  <tr>
+    <td>{{i.day}}</td>
+    <td>{{i.breakfast}}</td>
+    <td>{{i.lunch}}</td>
+    <td>{{i.snack}}</td>
+    <td>{{i.dinner}}</td>
+  </tr>
+  {% endfor%}
+</table>
+</div>
+<div class="container my-5">
+<h1 align='center'>Update Menu</h1>
+<div class="container my-5">
+<form align="center" action="adminmenu" method="post">
+{% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlSelect1"><strong><h3>Select Time</h3></strong></label>
+    <select class="form-control" id="exampleFormControlSelect1" name="time">
+      <option value="breakfast">Breakfast</option>
+      <option value="lunch">Lunch</option>
+      <option value="snack">Snacks</option>
+      <option value="dinner">Dinner</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1"><strong><h3>Select Day</h3></strong></label>
+    <select class="form-control" id="exampleFormControlSelect1" name="day">
+      <option value='1'>Monday</option>
+      <option value='2'>Tuesday</option>
+      <option value='3'>Wednesday</option>
+      <option value='4'>Thrusday</option>
+      <option value='5'>Friday</option>
+      <option value='6'>Saturday</option>
+      <option value='7'>Sunday</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1"><strong><h3>Write Here!</h3></strong></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="txt" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2"><strong>Update Menu</strong></button>
+</form>
+</div>
+</div>
+{% endblock body %}

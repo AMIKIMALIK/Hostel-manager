@@ -1,0 +1,9 @@
+/.idea
+/db.sqlite3
+/doc
+/firedb.py
+/firedelete.py
+/fireretirive.py
+/fireupdate.py
+/manager.json
+/pass.py
