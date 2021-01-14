@@ -1,13 +1,73 @@
 {% extends 'studentbase.html' %}
+{% block title %}Dashboard{% endblock title %}
 {% block body %}
-<div class="container">
-  <div class="row row-cols-3">
-    <div class="col">Profile</div>
-    <div class="col">Transport</div>
-    <div class="col">Today Mess</div>
-    <div class="col">Ledger Graphic</div>
-    <div class="col">{{message}}</div>
-    <div class="col">My Room No. </div>
+<div class="container mt-5 pt-5">
+  <div class="row m-2 ">
+    <div class="col shadow p-3 mb-5 bg-white rounded">
+
+      <h3 class='text-center text-primary'>Personal Informations</h3>
+      <h6 class='text-center text-danger'><span class="text-success"><strong>Name: </strong></span> 
+        {{user.first_name}} {{user.last_name}}</h6>
+        <h6 class='text-center text-danger'><span class="text-success"><strong>User Id: </strong></span> 
+        {{user.username}}</h6>
+    </div>
+    <div class="col shadow p-3 mb-5 bg-white rounded">
+      <h3 class='text-center text-primary'>Next Menu</h3>
+      <h5 class='text-center text-danger'>
+      {% if ti == 'snack' %}
+        <span class="text-success"><strong>Snack: </strong></span>{{mess}}</h5>
+      {% elif ti == 'lunch' %}
+      <span class="text-success"><strong>Lunch: </strong></span>{{mess}}</h5>
+      {% elif ti == 'breakfast' %}
+      <span class="text-success"><strong>Breakfast: </strong></span>{{mess}}</h5>
+      {% elif ti == 'dinner' %}
+      <span class="text-success"><strong>Dinner: </strong></span>{{mess}}</h5>
+      {% else %}
+      {{mess}}</h5>
+        {% endif %}
+    </div>
   </div>
+  <div class="row m-2">
+    <div class="col shadow p-3 mb-5 bg-white rounded">
+      <h3 class='text-center text-primary'>Latest Notification</h3>
+      
+      {% for i in messag %}
+    <h5 class="text-center text-danger"><span class="text-success"><strong>Category: </strong></span>{{i.category}}</h5>
+    <h6 class="text-center text-danger"><span class="text-success"><strong>Message: </strong></span> 
+    {{i.message}}
+
+    </h6>{% endfor %}
+    </div>
+
+    <div class="col shadow p-3 mb-5 bg-white rounded">
+      <h3 class='text-center text-primary'>My Transport Schedule</h3>
+      {% for i in f2 %}
+      <h6 class='text-center text-danger'>
+        <span class="text-success"><strong>Bus No: </strong></span>{{i.bus}} <span class="text-success"><strong>From: </strong></span>{{i.From}} <span class="text-success"><strong>To: </strong></span>{{i.to}} <span class="text-success"><strong>Time: </strong></span>{{i.time}}</h6>
+      {% endfor %} 
+      {% for i in f1 %}
+      <h6 class='text-center text-danger'>
+        <span class="text-success"><strong>Bus No: </strong></span>{{i.bus}} <span class="text-success"><strong>From: </strong></span>{{i.From}} <span class="text-success"><strong>To: </strong></span>{{i.to}} <span class="text-success"><strong>Time: </strong></span>{{i.time}}</h6>
+      {% endfor %}
+      
+    </div>
+  </div>
+  <div class="row m-2">
+    <div class="col shadow p-3 mb-5 bg-white rounded">
+      <h3 class='text-center text-primary'>Ledger</h3>
+      <h5 class="text-center text-danger">Not Available {{i.category}}</h5>
+    </div>
+
+    <div class="col shadow p-3 mb-5 bg-white rounded">
+      <h3 class='text-center text-primary'>Room Allocated</h3>
+      <h5 class='text-center text-danger'>
+        <span class="text-success"><strong>Block: </strong></span>{{rb}}
+        <span class="text-success"><strong>Room No: </strong></span>{{rn}}</h5>
+    </div>
+  </div>
+
 </div>
+
+</div>
+
 {% endblock body %}

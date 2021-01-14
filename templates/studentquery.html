@@ -1,10 +1,28 @@
 {% extends 'studentbase.html' %}
-
+{% block title %}Complaint{% endblock title %}
 {% block body %}
-
-<div class="container fluid mx-0 px-0">
-<img src="static/que1.png">
-</div>
+<div class="container-fluid my-3">
+<h2 align="center">My Complaints</h2>
+<table id="t01">
+  <tr>
+    <th>Time Stamp</th>
+    <th>Field</th>
+    <th>Complaint</th>
+    <th></th>
+  </tr>
+  {% for i in query %}
+  <tr>
+    <td>{{i.datetime}}</td>
+    <td>{{i.category}}</td>
+    <td>{{i.message}}</td>
+    {% if i.status == '1' %}
+    <td><button type="button" class="btn btn-warning rounded"><i class="fa fa-hourglass-half" aria-hidden="true"></i> Pending</button></td>
+    {% else %}
+    <td><button type="button" class="btn btn-success rounded"><i class="fa fa-check-circle" aria-hidden="true"></i> Solved</button></td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table></div>
 <div class="container my-5">
 <h1 align='center'>What is your complaint?</h1>
 <div class="container my-5">
@@ -18,7 +36,7 @@
       <option value="Meal">Meal</option>
       <option value="Payment">Payment</option>
       <option value="Staff">Staff</option>
-      <option value="Student Dashboard">Student Dashboard</option>
+      <option value="Student Dashboard">Dashboard</option>
       <option value="Transport">Transport</option>
       <option value="Other">Other</option>
     </select>

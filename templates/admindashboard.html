@@ -1,11 +1,39 @@
 {% extends 'adminbase.html' %}
+{% block title %}Dashboard{% endblock title %}
+{% block style %}
+<style>
+
+
+</style>
+ {% endblock style %}
 {% block body %}
-<div class="container">
-  <div class="row row-cols-2">
-    <div class="col">{{message1|length}}</div>
-    <div class="col">Empty Rooms/Total Rooms</div>
-    <div class="col">{{mes.message}}</div>
-    <div class="col">Finacial Insights</div>
+
+<div class="container mt-5 pt-5">
+  <div class="row m-2 ">
+    <div class="col shadow p-3 mb-5 bg-white rounded">
+    
+    <h3 class='text-center text-primary'>Total Registered Students</h3>
+    <h1 class='text-center text-danger'>
+    {{message1|length}}</h1>
+    </div>
+    <div class="col shadow p-3 mb-5 bg-white rounded"><h3 class='text-center text-primary'>Numbers of Beds Available</h3>
+      <h4 class='text-center text-danger'>
+        Not Available</h4></div>
+  </div>
+  <div class="row m-2">
+    <div class="col shadow p-3 mb-5 bg-white rounded"><h3 class='text-center text-primary'>Latest Complaint</h3>
+    {% for i in mes %}
+    <h4 class="text-center text-success"><strong>Category:</strong> {{i.category}}</h4>
+    <h6 class="text-center text-danger"><strong>Message:</strong> 
+    {{i.message}}
+
+    </h6>{% endfor %}
+    </div>
+    
+    <div class="col shadow p-3 mb-5 bg-white rounded"><h3 class='text-center text-primary'>Financial Insights</h3>
+      <h4 class='text-center text-danger'>
+        Not Available</h4></div></div>
   </div>
 </div>
+
 {% endblock body %}

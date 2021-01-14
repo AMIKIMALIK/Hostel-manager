@@ -1,4 +1,5 @@
 {% extends 'adminbase.html' %}
+{% block title %}Transport{% endblock title %}
 {% block style %}
 <style>
 html, body {
@@ -56,8 +57,7 @@ h2{
   <tr>
     <th>Bus No.</th>
     <th>Time</th>
-    <th>From</th> 
-    <th>Via</th>
+    <th>From</th>
     <th>To</th>
     <th></th>
   </tr>
@@ -66,7 +66,6 @@ h2{
     <td>{{i.bus}}</td>
     <td>{{i.time}}</td>
     <td>{{i.From}}</td>
-    <td>{{i.via}}</td>
     <td>{{i.to}}</td>
     <td><a href="/delete/{{i.id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
     <!-- <td><button type="button" class="btn btn-danger " name={{i.id}}>Delete</button></td> -->
@@ -85,19 +84,15 @@ h2{
     </div>
     <div class="col-2 text-center">
     <label for="inputCity" class="form-label">Time</label>
-    <input type="text" class="form-control" name="time" placeholder="07:00 AM">
+    <input type="text" class="form-control" name="time">
     </div>
     <div class="col-2 text-center">
     <label for="inputCity" class="form-label">From</label>
-    <input type="text" class="form-control" name="from" placeholder="Delhi">
-    </div>
-    <div class="col-2 text-center">
-    <label for="inputCity" class="form-label">Via</label>
-    <input type="text" class="form-control" name="via" placeholder="Panipat, Karnal, Ambala">
+    <input type="text" class="form-control" name="from">
     </div>
     <div class="col-2 text-center">
     <label for="inputCity" class="form-label">To</label>
-    <input type="text" class="form-control" name="to2" placeholder="Chandigarh">
+    <input type="text" class="form-control" name="to2">
     </div>
   <div class="col-2 mt-4 text-center">
     <button type="submit" class="btn btn-primary w-50">Submit</button>

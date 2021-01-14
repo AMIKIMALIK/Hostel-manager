@@ -1,37 +1,103 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User, auth
 from django.utils.datastructures import MultiValueDictKeyError
 from .models import Notification,Transport, Mess_menu, Register_student, Rooms, Complaint
 from datetime import datetime, date
+import calendar
 from random import randrange
+from django.core.mail import send_mail
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 today = date.today()
 
 d1=today.strftime("%Y-%M-%D")
 
+def find_time():
+    now = datetime.now()
+    today = date.today() 
+    today =str(today)
+    year= today[:4]
+    month= today[5:7]
+    day= today[8:10]
+    today=(day+" "+month+" "+year)
+    day, month, year = (int(i) for i in today.split(' '))
+    dayNumber = calendar.weekday(year, month, day)
+    current_time = now.strftime("%H:%M")
+    current_time = current_time.replace(":","")
+    # print("Current Time =", current_time) 
+    days =["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    return (dayNumber, current_time)
+
 # Create your views here.
+@login_required
 def admindashboard(request):
     re_data= Register_student.objects.all()
-    re_data1= Complaint.objects.all()
+    am = Complaint.objects.all().order_by('-id')[:1]
+    
+    return render(request, 'admindashboard.html',{'message1':re_data,'mes':am})
 
-    return render(request, 'admindashboard.html',{'message1':re_data,"mes":re_data1})
-
-
+@login_required
 def adminstudent(request):
     re_data= Register_student.objects.all().order_by('-id')
-    id_data= Register_student.objects.all()
     context={'message':re_data}
-    # print(context['message'])
+    if( request.method=='POST'):
+        sid= request.POST['sid']
+        field= request.POST['field']
+        here= request.POST['here']
+        data= Register_student.objects.get(pk=sid)
+        if (field=="smobile"):
+            data.smobile=here
+        elif(field=="fname"):
+            data.fname=here
+        elif(field=="fmobile"):
+            data.fmobile=here
+        elif(field=="dob"):
+            data.dob=here
+        elif(field=="college"):
+            data.college=here
+        elif(field=="course"):
+            data.course=here
+        elif(field=="acadmic"):
+            data.acadmic=here
+        elif(field=="fadd"):
+            data.address1=here
+        elif(field=="sadd"):
+            data.address2=here
+        elif(field=="zip"):
+            data.zip_code=here
+        elif(field=="country"):
+            data.country=here
+        elif(field=="idt"):
+            data.gov_type=here
+        elif(field=="idn"):
+            data.gov_id=here
+        elif(field=="roomb"):
+            data.room_block=here
+        elif(field=="roomn"):
+            data.room_no=here
+        elif(field=="roomt"):
+            data.room_type=here
+        elif(field=="accp"):
+            data.acc_plan=here
+        else:
+            data.final_fee=here
+
+        data.save()
+        return HttpResponseRedirect("adminstudent",context)
+
+
+
 
     return render(request, 'adminstudentlist.html',context)
 
-
+@login_required
 def adminroom(request):
     re_data = Rooms.objects.all()
 
     return render(request, 'adminroom.html',{'message':re_data})
 
-
+@login_required
 def adminmenu(request):
     re_data = Mess_menu.objects.all()
     if (request.method=='POST'):
@@ -53,7 +119,7 @@ def adminmenu(request):
     
     return render(request, 'adminmenu.html',{'message':re_data})
 
-
+@login_required
 def admintransport(request):
 
     re_data = Transport.objects.all().order_by('to')
@@ -62,34 +128,33 @@ def admintransport(request):
         bu = request.POST.get('bus')
         tim = request.POST.get('time')
         fr = request.POST.get('from')
-        vi = request.POST.get('via')
         to4 = request.POST.get('to2')
-        if(bu!="" and tim!=None and fr!=None and vi!=None and to4!=None):
-            transport = Transport(bus=bu,time=tim,From=fr, via=vi, to=to4)
+        if(bu!="" and tim!=None and fr!=None and to4!=None):
+            transport = Transport(bus=bu,time=tim,From=fr, to=to4)
             transport.save()
             return HttpResponseRedirect("admintransport",{'message':re_data})
 
     return render(request, 'admintransport.html',{'message':re_data})
     # return HttpResponseRedirect('admintransport.html')
 
-
+@login_required
 def adminledger(request):
 
     return render(request, 'adminledger.html')
 
-
+@login_required
 def adminpayment(request):
 
     return render(request, 'adminpayment.html')
 
-
+@login_required
 def admincomplaint(request):
 
-    re_data = Complaint.objects.all()
+    re_data = Complaint.objects.all().order_by('-id')
 
     return render(request, 'adminquery.html',{'message':re_data})
 
-
+@login_required
 def adminnotification(request):
 
 
@@ -144,7 +209,7 @@ def first_last_name(name):
         last= sname[-1]
     return first, last
 
-
+@login_required
 def registerstudent(request):
     id_data= Register_student.objects.only('studentid')
     if request.method =='POST':
@@ -181,8 +246,11 @@ def registerstudent(request):
         usr= User.objects.create_user(username= email, email= email, password= password)
         usr.first_name= fnam
         usr.last_name= lnam
-        usr.save()
+        
         user= Register_student(sname=s_name, smobile=s_mobile, fname=f_name, fmobile=f_mobile, semail=email,gender=gender1,dob=dob1, college=country1,course=course1, acadmic=acadmic1, address1=addr1, address2=addr2, city= city1, zip_code=zip1, country=country1,gov_type=g_type, gov_id=g_id, room_block=block1, room_no=room1, room_type=room_type1, acc_plan=plan1, final_fee=fee1)
+        body = f"Hello {s_name}\nYour registration for Hostel Dashboard is successful\nYou login credentials are below:\nUsername: {email}\nPassword: {password}"
+        send_mail("Login Credentials for Hostel Dashboard",body,"malik02101999@gmail.com",[email],fail_silently=True)
+        usr.save()
         user.save()
         # print("user created")
         # return render(request, 'adminregister.html')
@@ -207,5 +275,46 @@ def viewstudent():
 
 def deletestudent(request, id):
     item = Register_student.objects.get(id=id)
+    em = item.semail
+    usr = User.objects.get(username=em)
     item.delete()
+    usr.delete()
+
     return redirect("/adminstudent")
+
+
+
+def user_login(request):
+    if( request.method=="POST"):
+        un= request.POST['username']
+        pwd= request.POST['pass']
+
+        user= authenticate(username=un, password=pwd)
+        if user:
+            login(request, user)
+            if user.is_superuser:
+                return HttpResponseRedirect('/admin')
+            if user.is_staff:
+                return HttpResponseRedirect('/admindashboard')
+            if user.is_active:
+                return HttpResponseRedirect('/studentdashboard')
+        else:
+            return HttpResponse(user)
+
+
+    return redirect('index.html')
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+
+def error_404_view(request, exception):
+    return render(request,'404.html')
+
+
+def s_pending(request, id):
+    item = Complaint.objects.get(id=id)
+    item.status=0
+    item.save()
+    return redirect("/adminquery")

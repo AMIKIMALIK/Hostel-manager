@@ -1,4 +1,5 @@
 {% extends 'studentbase.html' %}
+{% block title %}Transport Schedule{% endblock title %}
 {% block style %}
 
 
@@ -59,8 +60,7 @@ h2{
   <tr>
     <th>Bus No.</th>
     <th>Time</th>
-    <th>From</th> 
-    <th>Via</th>
+    <th>From</th>
     <th>To</th>
   </tr>
   {% for i in message %}
@@ -68,7 +68,6 @@ h2{
     <td>{{i.bus}}</td>
     <td>{{i.time}}</td>
     <td>{{i.From}}</td>
-    <td>{{i.via}}</td>
     <td>{{i.to}}</td>
   </tr>
   {% endfor%}

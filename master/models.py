@@ -78,13 +78,14 @@ class Rooms(models.Model):
     
 
 class Complaint(models.Model):
-    category = models.CharField(max_length=10)
+    student_id = models.CharField(max_length=40)
+    category = models.CharField(max_length=20)
     message = models.CharField(max_length=255)
-    status = models.CharField(max_length=10, default=0)
+    status = models.CharField(max_length=10,)
     datetime= models.CharField(max_length=20, default=d1)
 
     def __str__(self):
-        return self.student_id+" "+str(self.category)
+        return self.category
 
 class register_table(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -1,4 +1,6 @@
-{% extends 'adminbase.html' %} {% block body %}
+{% extends 'adminbase.html' %}
+{% block title %}Register Student{% endblock title %}
+{% block body %}
 <div class="container my-5">
   <h1 align="center">Register New Student Here!</h1>
   <div class="container my-5">
@@ -6,7 +8,7 @@
       {% csrf_token %}
       <div class="col-md-6">
         <label for="inputName" class="form-label">Student Full Name</label>
-        <input type="text" class="form-control" id="inputName" name="s_name" />
+        <input type="text" class="form-control" id="inputName" name="s_name" required />
       </div>
       <div class="col-md-6">
         <label for="inputName" class="form-label">Student Mobile Number</label>
@@ -14,7 +16,7 @@
           type="text"
           class="form-control"
           id="inputMobile"
-          name="s_mobile"
+          name="s_mobile" required
         />
       </div>
       <div class="col-md-6">
@@ -23,7 +25,7 @@
           type="text"
           class="form-control"
           id="inputFather"
-          name="f_name"
+          name="f_name" required
         />
       </div>
       <div class="col-md-6">
@@ -34,12 +36,12 @@
           type="text"
           class="form-control"
           id="inputFatherMobile"
-          name="f_mobile"
+          name="f_mobile" required
         />
       </div>
       <div class="col-md-6">
         <label for="inputEmail" class="form-label">Student Email</label>
-        <input type="email" class="form-control" id="inputEmail" name="email" />
+        <input type="email" class="form-control" id="inputEmail" name="email" required />
       </div>
       <div class="col-md-6">
         <label for="inputAcadmic" class="form-label">Gender</label>
@@ -47,6 +49,7 @@
           class="form-control"
           id="exampleFormControlSelect1"
           name="gender"
+          required
         >
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -55,7 +58,7 @@
       </div>
       <div class="col-md-6">
         <label for="inputCollege" class="form-label">D.O.B</label>
-        <input type="text" class="form-control" id="inputCollege" name="dob" />
+        <input type="text" class="form-control" id="inputCollege" name="dob" required />
       </div>
       <div class="col-md-6">
         <label for="inputCollege" class="form-label">College/University</label>
@@ -63,7 +66,7 @@
           type="text"
           class="form-control"
           id="inputCollege"
-          name="college"
+          name="college" required
         />
       </div>
       <div class="col-md-6">
@@ -72,7 +75,7 @@
           type="text"
           class="form-control"
           id="inputCourse"
-          name="course"
+          name="course" required
         />
       </div>
       <div class="col-md-6">
@@ -80,7 +83,7 @@
         <select
           class="form-control"
           id="exampleFormControlSelect1"
-          name="acadmic"
+          name="acadmic" required
         >
           <option value="1">1st Year</option>
           <option value="2">2nd Year</option>
@@ -95,7 +98,7 @@
           type="text"
           class="form-control"
           id="inputAddress"
-          name="address"
+          name="address" required
         />
       </div>
       <div class="col-md-6">
@@ -109,12 +112,12 @@
       </div>
       <div class="col-md-6">
         <label for="inputCity" class="form-label">City</label>
-        <input type="text" class="form-control" id="inputCity" name="city" />
+        <input type="text" class="form-control" id="inputCity" name="city" required />
       </div>
 
       <div class="col-md-6">
         <label for="inputZip" class="form-label">Zip</label>
-        <input type="text" class="form-control" id="inputZip" name="zip" />
+        <input type="text" class="form-control" id="inputZip" name="zip" required />
       </div>
       <div class="col-md-6">
         <label for="inputCollege" class="form-label">Country</label>
@@ -122,7 +125,7 @@
           type="text"
           class="form-control"
           id="inputCountry"
-          name="country"
+          name="country" required
         />
       </div>
       
@@ -131,7 +134,7 @@
         <select
           class="form-control"
           id="exampleFormControlSelect7"
-          name="gov_type"
+          name="gov_type" required
         >
           <option value="Passport">Passport</option>
           <option value="Aadhaar Number">Aadhaar Number</option>
@@ -148,7 +151,7 @@
           type="text"
           class="form-control"
           id="inputGovernment"
-          name="gov_id"
+          name="gov_id" required
         />
       </div>
       
@@ -157,7 +160,7 @@
         <select
           class="form-control"
           id="exampleFormControlSelect4"
-          name="block"
+          name="block" required
         >
           <option value="A">Block A</option>
           <option value="B">Block B</option>
@@ -167,7 +170,7 @@
       </div>
       <div class="col-md-6">
         <label for="inputZip" class="form-label">Select Room</label>
-        <select class="form-control" id="exampleFormControlSelect3" name="room">
+        <select class="form-control" id="exampleFormControlSelect3" name="room" required>
           <option value="101">101</option>
           <option value="102">102</option>
           <option value="103">103</option>
@@ -196,7 +199,7 @@
         <select
           class="form-control"
           id="exampleFormControlSelect2"
-          name="room_type"
+          name="room_type" required
         >
           <option value="1AC">1 Seater AC</option>
           <option value="1NAC">1 Seater Non-AC</option>
@@ -209,7 +212,7 @@
       
       <div class="col-md-6">
         <label for="inputZip" class="form-label">Accomodation Plan</label>
-        <select class="form-control" id="exampleFormControlSelect5" name="plan">
+        <select class="form-control" id="exampleFormControlSelect5" name="plan" required>
           <option value="Monthly">Monthly</option>
           <option value="6 Months">6 Months</option>
           <option value="10 Months">10 Months</option>
@@ -218,7 +221,7 @@
       </div>
       <div class="col-12">
         <label for="inputCity" class="form-label">Discussed Fee</label>
-        <input type="number" class="form-control" id="inputFee" name="fee" />
+        <input type="number" class="form-control" id="inputFee" name="fee" required />
       </div>
       <div class="col-12 mt-4 text-center">
         <button type="submit" class="btn btn-primary w-50">Register</button>
@@ -226,4 +229,5 @@
     </form>
   </div>
 </div>
+
 {% endblock body %}

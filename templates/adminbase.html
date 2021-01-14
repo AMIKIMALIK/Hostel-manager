@@ -20,11 +20,12 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js" integrity="sha512-dG5ZzvFUfkBdjYdJbsKdGGh8tOa9fv9wHmiChCFJYHRIW1XgfxN2cGzt2HaEPeunXqbAQXBOJvSBQpGOl0qikw==" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% block style %} {% endblock style %} {% comment %}
     <link rel="stylesheet" href="style.css" />
     {% endcomment %}
 
-    <title>{% block title %} {% endblock title %} Hostel Manager</title>
+    <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -49,21 +50,17 @@
             <a class="nav-link" href="admintransport">Transport</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="adminledger">Ledger</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="adminpayment">Offline Payment</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="adminquery">Complaints</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="adminnotification">Notification</a>
           </li>
         </ul>
-        <form class="d-flex">
+        <button class="btn btn-warning mr-2"><strong>Welcome </strong>{{user.username}}</button>
+        <a href="{% url 'userlogout' %}" class="btn btn-danger">Logout</a>
+        <!-- <form class="d-flex">
           <button class="btn btn-outline-danger" type="submit">Logout</button>
-        </form>
+        </form> -->
       </div>
     </nav>
 

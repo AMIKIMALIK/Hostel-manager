@@ -28,3 +28,6 @@ urlpatterns = [
     path('', include('main.urls')),
     path('delete/<int:id>',views.deletet)
 ]
+
+
+handler404 = 'master.views.error_404_view'

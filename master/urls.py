@@ -14,9 +14,10 @@ urlpatterns = [
     path('adminquery', views.admincomplaint, name="adminquery"),
     path('adminnotification', views.adminnotification, name="adminnotification"),
     path('registerstudent', views.registerstudent, name='registerstudent'),
-    path('viewstudent/<int:id>', views.viewstudent),
-    path('editstudent/<int:id>', views.editstudent),
-    path('deletestudent/<int:id>', views.deletestudent)
+    path('deletestudent/<int:id>', views.deletestudent,name="deletestudent"),
+    path('userlogin', views.user_login, name="userlogin"),
+    path('userlogout', views.user_logout, name="userlogout"),
+    path('pending/<int:id>', views.s_pending,name="pending"),
 
 
 
