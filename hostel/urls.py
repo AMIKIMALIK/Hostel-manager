@@ -25,7 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('student.urls')),
     path('', include('master.urls')),
-    path('', include('main.urls')),
     path('delete/<int:id>',views.deletet)
 ]
 
