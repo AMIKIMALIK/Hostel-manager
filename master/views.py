@@ -63,7 +63,7 @@ def adminstudent(request):
         elif(field=="fadd"):
             data.address1=here
         elif(field=="sadd"):
-            data.address2=here
+            data.city=here
         elif(field=="zip"):
             data.zip_code=here
         elif(field=="country"):
@@ -166,8 +166,10 @@ def adminnotification(request):
         #     message = False
         category1 = request.POST.get('category')
         message1 = request.POST.get('message')
+        d1=today.strftime("%Y-%M-%D")
+        print(d1)
 
-        notification = Notification(category=category1,message=message1,date_time=d1)
+        notification = Notification(category=category1,message=message1)
         notification.save()
 
     return render(request, 'adminnotification.html')
