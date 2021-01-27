@@ -251,7 +251,7 @@ def registerstudent(request):
         
         user= Register_student(sname=s_name, smobile=s_mobile, fname=f_name, fmobile=f_mobile, semail=email,gender=gender1,dob=dob1, college=country1,course=course1, acadmic=acadmic1, address1=addr1, address2=addr2, city= city1, zip_code=zip1, country=country1,gov_type=g_type, gov_id=g_id, room_block=block1, room_no=room1, room_type=room_type1, acc_plan=plan1, final_fee=fee1)
         body = f"Hello {s_name}\nYour registration for Hostel Dashboard is successful\nYou login credentials are below:\nUsername: {email}\nPassword: {password}\n Login here: amitmalikapp.pythonanywhere.com"
-        send_mail("Login Credentials for Hostel Dashboard",body,"malik02101999@gmail.com",[email],fail_silently=True)
+        send_mail("Login Credentials for Hostel Dashboard",body,"email",[email],fail_silently=True)
         usr.save()
         user.save()
         # print("user created")
